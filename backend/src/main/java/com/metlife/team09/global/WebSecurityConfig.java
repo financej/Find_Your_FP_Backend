@@ -14,11 +14,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Configuration
-    @EnableWebSecurity
-    @RequiredArgsConstructor
-    public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
         private final JwtTokenProvider jwtTokenProvider;
 
         @Override
@@ -33,7 +28,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                     .authorizeRequests()
 
-                    .antMatchers(HttpMethod.GET, "/api/auth/**").permitAll();
+                    .antMatchers(HttpMethod.POST, "/api/auth/**").permitAll();
         }
-    }
 }

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AuthService {
 
     private final MemberRepository memberRepository;
@@ -20,6 +21,7 @@ public class AuthService {
 
     @Transactional
     public SignupResponseDto signup(final SignupRequestDto requestDto) {
+
         final Member member = Member.builder()
                 .email(requestDto.email())
                 .password(requestDto.password())
