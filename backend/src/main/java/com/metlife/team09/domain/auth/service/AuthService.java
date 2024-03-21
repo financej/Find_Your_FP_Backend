@@ -58,19 +58,22 @@ public class AuthService {
         String email = kakaoAuthInfoResponse.kakaoAccount().getEmail();
         boolean isMemberExists = memberRepository.findByEmail(email).isPresent();
 
-        // TODO 로그인
+        Member member;
+        // 로그인
         if(isMemberExists) {
-
+            member = memberRepository.findByEmail(email).orElseThrow(RuntimeException::new);
         }
-        // TODO 회원가입
+        // 회원가입
         else {
-            Member member = Member.builder()
+            member = Member.builder()
                     .email(email)
                     .build();
+            member = memberRepository.save(member);
         }
-        // TODO 엑세스 토큰 만들어서 Controller로 리턴
 
-        return null;
+        String accessToken = jwtTokenProvider.createToken(member.getId().toString());
+
+        return new TokenResponseDto(accessToken);
     }
 
     private KakaoAuthInfoResponseDto getKakaoAuthInfoResponse(KakaoAuthLoginResponseDto kakaoLoginAccessToken) {
