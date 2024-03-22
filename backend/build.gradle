@@ -43,6 +43,9 @@ dependencies {
     // JWT
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
+    //SWAGGER
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+
     // FEIGN
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.8'
 }
