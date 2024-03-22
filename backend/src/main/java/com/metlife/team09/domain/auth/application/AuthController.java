@@ -1,9 +1,6 @@
 package com.metlife.team09.domain.auth.application;
 
-import com.metlife.team09.domain.auth.application.dto.LoginRequestDto;
-import com.metlife.team09.domain.auth.application.dto.LoginResponseDto;
-import com.metlife.team09.domain.auth.application.dto.SignupRequestDto;
-import com.metlife.team09.domain.auth.application.dto.SignupResponseDto;
+import com.metlife.team09.domain.auth.application.dto.*;
 import com.metlife.team09.domain.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,5 +23,11 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody final LoginRequestDto requestDto) {
         return ResponseEntity.ok(authService.login(requestDto));
+    }
+
+    @GetMapping("/login/kakao")
+    public ResponseEntity<TokenResponseDto> loginKakao(@RequestBody LoginKakaoRequestDto request) {
+        TokenResponseDto response = authService.loginKakao(request);
+        return ResponseEntity.ok(response);
     }
 }
