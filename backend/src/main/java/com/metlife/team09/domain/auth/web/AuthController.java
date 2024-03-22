@@ -1,7 +1,7 @@
-package com.metlife.team09.domain.auth.application;
+package com.metlife.team09.domain.auth.web;
 
 import com.metlife.team09.domain.auth.application.dto.*;
-import com.metlife.team09.domain.auth.service.AuthService;
+import com.metlife.team09.domain.auth.application.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

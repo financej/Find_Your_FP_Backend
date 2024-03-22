@@ -1,4 +1,4 @@
-package com.metlife.team09.domain.auth.service;
+package com.metlife.team09.domain.auth.application;
 
 import com.metlife.team09.domain.auth.application.dto.*;
 import com.metlife.team09.domain.feign.client.KakaoAuthInfoClient;
