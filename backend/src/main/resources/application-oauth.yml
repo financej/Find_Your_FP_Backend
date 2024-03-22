@@ -1,0 +1,5 @@
+kakao:
+  client-id: 00341e5728df150c3dfb6dd9133d2604
+  client-secret: 0WYs3mDg32jg6cx0ILYiMOfLaYYkz1pM
+  client-authentication-method: client_secret_post
+  authorization-grant-type: authorization_code
