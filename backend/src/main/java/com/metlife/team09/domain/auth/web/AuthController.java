@@ -25,7 +25,7 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(requestDto));
     }
 
-    @GetMapping("/login/kakao")
+    @PostMapping("/login/kakao")
     public ResponseEntity<TokenResponseDto> loginKakao(@RequestBody LoginKakaoRequestDto request) {
         TokenResponseDto response = authService.loginKakao(request);
         return ResponseEntity.ok(response);
