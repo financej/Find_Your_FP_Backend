@@ -77,7 +77,7 @@ public class AuthService {
     }
 
     private KakaoAuthInfoResponseDto getKakaoAuthInfoResponse(KakaoAuthLoginResponseDto kakaoLoginAccessToken) {
-        return kakaoAuthInfoClient.getInfo("Bearer " + kakaoLoginAccessToken.accessToken());
+        return kakaoAuthInfoClient.getInfo("Bearer " + kakaoLoginAccessToken.accessToken(), "application/x-www-form-urlencoded;charset=utf-8");
     }
 
     private KakaoAuthLoginResponseDto getKakaoLoginAccessToken(LoginKakaoRequestDto request) {
