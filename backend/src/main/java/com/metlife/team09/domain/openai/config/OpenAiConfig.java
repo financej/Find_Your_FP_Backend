@@ -1,4 +1,4 @@
-package com.metlife.team09.domain.openai.application;
+package com.metlife.team09.domain.openai.config;
 
 import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.OpenAIClientBuilder;
