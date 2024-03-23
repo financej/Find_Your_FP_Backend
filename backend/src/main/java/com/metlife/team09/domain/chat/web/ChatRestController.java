@@ -1,19 +1,18 @@
 package com.metlife.team09.domain.chat.web;
 
-import com.metlife.team09.domain.chat.application.ChatLogService;
-import com.metlife.team09.domain.chat.persistence.ChatLog;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.metlife.team09.domain.chat.application.ChatLogService;
 import com.metlife.team09.domain.chat.application.ChatService;
 import com.metlife.team09.domain.chat.application.LogsConvertUtil;
 import com.metlife.team09.domain.chat.application.dto.ChatRoomRequestDto;
@@ -21,10 +20,9 @@ import com.metlife.team09.domain.chat.application.dto.ChatRoomResponseDto;
 import com.metlife.team09.domain.chat.application.dto.ChatSummaryResponseDto;
 import com.metlife.team09.domain.chat.application.dto.EndChatRoomRequestDto;
 import com.metlife.team09.domain.chat.persistence.Chat;
+import com.metlife.team09.domain.chat.persistence.ChatLog;
 
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
 
 
 @RestController
@@ -60,14 +58,12 @@ public class ChatRestController {
         chatService.endChatRoom(requestDto);
     }
 
-    @GetMapping("/api/chat/summary/{roomId}")
+    @GetMapping("/chats/summary/{roomId}")
     public ResponseEntity<ChatSummaryResponseDto> getSummary(@PathVariable Long roomId) {
-
         List<ChatLog> chatLogs = chatLogService.getChatLogs(roomId);
 
-        logsConvertUtil.convertToAiRequest(chatLogs);
+        ChatSummaryResponseDto chatSummaryResponseDto = logsConvertUtil.convertToAiRequest(chatLogs);
 
-        return null;
-
+        return ResponseEntity.ok(chatSummaryResponseDto);
     }
 }
