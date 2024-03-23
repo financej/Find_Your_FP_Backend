@@ -21,7 +21,8 @@ public class PlannerController {
 
 	@GetMapping("")
 	public ResponseEntity<?> getPlanners() {
-		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		final String name = SecurityContextHolder.getContext().getAuthentication().getName();
+
 		return ResponseEntity.ok(plannerService.getPlanners(name));
 	}
 }

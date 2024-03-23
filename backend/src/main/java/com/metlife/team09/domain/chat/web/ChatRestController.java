@@ -1,6 +1,12 @@
 package com.metlife.team09.domain.chat.web;
 
-import java.util.List;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.metlife.team09.domain.chat.application.ChatService;
 import com.metlife.team09.domain.chat.application.LogsConvertUtil;
@@ -9,12 +15,8 @@ import com.metlife.team09.domain.chat.application.dto.ChatRoomResponseDto;
 import com.metlife.team09.domain.chat.application.dto.ChatSummaryResponseDto;
 import com.metlife.team09.domain.chat.application.dto.EndChatRoomRequestDto;
 import com.metlife.team09.domain.chat.persistence.Chat;
-import com.metlife.team09.domain.chat.persistence.ChatLog;
-import com.metlife.team09.domain.chat.persistence.ChatRepository;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -27,23 +29,25 @@ public class ChatRestController {
 
     @PostMapping("/chats")
     public ResponseEntity<ChatRoomResponseDto> createRoom(@RequestParam Long userId) {
-        Chat room = chatService.createRoom(1L);
+        Chat room = chatService.createRoom(userId);
         ChatRoomResponseDto response = ChatRoomResponseDto.from(room);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/chats")
-    public ResponseEntity<ChatRoomResponseDto> chatRoom(@RequestParam ChatRoomRequestDto requestDto){
-        Chat chat = chatService.findRoomById(requestDto.roomId());
+    public ResponseEntity<ChatRoomResponseDto> chatRoom(@RequestParam final ChatRoomRequestDto requestDto){
+        final Chat chat = chatService.findRoomById(requestDto.roomId());
+
         chatService.joinChat(requestDto);
-        ChatRoomResponseDto response = ChatRoomResponseDto.from(chat);
+
+        final ChatRoomResponseDto response = ChatRoomResponseDto.from(chat);
 
         return ResponseEntity.ok(response);
     }
 
     // ws 프로토콜로 세션 종료후 호출해야함
     @DeleteMapping("/chats")
-    public void endChatRoom(@RequestParam final EndChatRoomRequestDto requestDto) {
+    public void endChatRoom(@ModelAttribute final EndChatRoomRequestDto requestDto) {
         chatService.endChatRoom(requestDto);
     }
 

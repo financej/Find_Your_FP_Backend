@@ -1,4 +1,4 @@
-package com.metlife.team09.domain.chat.web;
+package com.metlife.team09.domain.chat.application;
 
 import java.util.List;
 

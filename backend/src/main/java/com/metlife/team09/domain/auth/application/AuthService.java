@@ -3,6 +3,7 @@ package com.metlife.team09.domain.auth.application;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.metlife.team09.domain.member.exception.MemberNotFound;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class AuthService {
 
     private final MemberRepository memberRepository;
@@ -37,35 +38,20 @@ public class AuthService {
     private String KAKAO_CLIENT_ID;
     @Value("${kakao.client-secret}")
     private String KAKAO_CLIENT_SECRET;
+
     @Transactional
-    public SignupResponseDto signup(final SignupRequestDto requestDto) {
+    public TokenResponseDto loginKakao(final LoginKakaoRequestDto request) {
+        final KakaoAuthLoginResponseDto kakaoLoginAccessToken = getKakaoLoginAccessToken(request);
+        final KakaoAuthInfoResponseDto kakaoAuthInfoResponse = getKakaoAuthInfoResponse(kakaoLoginAccessToken);
 
-        final Member member = Member.builder()
-                .email(requestDto.email())
-                .build();
-
-        memberRepository.save(member);
-
-        return new SignupResponseDto(member.getId());
-    }
-    public LoginResponseDto login(final LoginRequestDto requestDto) {
-
-        final String token = jwtTokenProvider.createToken(requestDto.email());
-
-        return new LoginResponseDto(token);
-    }
-
-    public TokenResponseDto loginKakao(LoginKakaoRequestDto request) {
-        KakaoAuthLoginResponseDto kakaoLoginAccessToken = getKakaoLoginAccessToken(request);
-        KakaoAuthInfoResponseDto kakaoAuthInfoResponse = getKakaoAuthInfoResponse(kakaoLoginAccessToken);
-
-        String email = kakaoAuthInfoResponse.kakaoAccount().getEmail();
-        boolean isMemberExists = memberRepository.findByEmail(email).isPresent();
+        final String email = kakaoAuthInfoResponse.kakaoAccount().getEmail();
+        final boolean isMemberExists = memberRepository.findByEmail(email).isPresent();
 
         Member member;
         // 로그인
         if(isMemberExists) {
-            member = memberRepository.findByEmail(email).orElseThrow(RuntimeException::new);
+            member = memberRepository.findByEmail(email)
+                    .orElseThrow(MemberNotFound::new);
         }
         // 회원가입
         else {
@@ -75,17 +61,18 @@ public class AuthService {
             member = memberRepository.save(member);
         }
 
-        String accessToken = jwtTokenProvider.createToken(member.getId().toString());
+        final String accessToken = jwtTokenProvider.createToken(member.getId().toString());
 
         return new TokenResponseDto(accessToken,member.getEmail(),member.getIsAdmin());
     }
 
-    private KakaoAuthInfoResponseDto getKakaoAuthInfoResponse(KakaoAuthLoginResponseDto kakaoLoginAccessToken) {
+    private KakaoAuthInfoResponseDto getKakaoAuthInfoResponse(final KakaoAuthLoginResponseDto kakaoLoginAccessToken) {
         return kakaoAuthInfoClient.getInfo("Bearer " + kakaoLoginAccessToken.accessToken(), "application/x-www-form-urlencoded;charset=utf-8");
     }
 
-    private KakaoAuthLoginResponseDto getKakaoLoginAccessToken(LoginKakaoRequestDto request) {
-        Map<String, Object> parmaMap = new HashMap<>();
+    private KakaoAuthLoginResponseDto getKakaoLoginAccessToken(final LoginKakaoRequestDto request) {
+        final Map<String, Object> parmaMap = new HashMap<>();
+
         parmaMap.put("grant_type", "authorization_code");
         parmaMap.put("client_id", KAKAO_CLIENT_ID);
         parmaMap.put("client_secret", KAKAO_CLIENT_SECRET);

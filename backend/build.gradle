@@ -32,7 +32,7 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
@@ -43,12 +43,15 @@ dependencies {
     // WEBSOCKET
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
 
+    // MYSQL
+    implementation 'mysql:mysql-connector-java:8.0.15'
+
     // JWT
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
     //SWAGGER
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
-
+    runtimeOnly 'mysql:mysql-connector-java'
     // FEIGN
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.8'
 

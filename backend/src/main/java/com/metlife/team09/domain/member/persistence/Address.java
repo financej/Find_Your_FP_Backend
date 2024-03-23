@@ -5,9 +5,9 @@ import javax.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@Getter
 @Embeddable
 @AllArgsConstructor
-@Getter
 public class Address {
 	String siDo;
 	String siGunGu;
