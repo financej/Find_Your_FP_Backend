@@ -47,12 +47,12 @@
     //메세지 보내기 버튼 눌렀을 떄..
     function sendMsg() {
         let content=document.querySelector('.content').value;
-        var talkMsg={"type" : "TALK","roomId":[[${room.id}]] ,"sender":[[${userId}]],"msg":content};
+        var talkMsg={"type" : "TALK","roomId":[[${room.id}]] ,"senderId": 1,"message":content};
         socket.send(JSON.stringify(talkMsg));
     }
 
     function quit(){
-        var quitMsg={"type" : "QUIT","roomId":[[${room.id}]] ,"sender":[[${userId}]],"msg":""};
+        var quitMsg={"type" : "QUIT","roomId":[[${room.id}]] ,"senderId": 1,"message":""};
         socket.send(JSON.stringify(quitMsg));
         socket.close();
         location.href="/chat/chatList";
