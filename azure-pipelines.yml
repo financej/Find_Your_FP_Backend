@@ -35,7 +35,7 @@ steps:
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'metlife-it-hackathon'
-    appType: 'java:SE'
+    appType: 'webAppLinux'
     appName: 'app-metlife-team09'
     package: '$(Build.ArtifactStagingDirectory)/**/*.jar'
     runtimeStack: 'JAVA|17-java11' # Adjust the Java version according to your app's requirements
