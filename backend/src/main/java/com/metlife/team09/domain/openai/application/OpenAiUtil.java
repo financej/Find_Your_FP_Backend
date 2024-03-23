@@ -3,6 +3,7 @@ package com.metlife.team09.domain.openai.application;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.metlife.team09.domain.openai.config.OpenAiConfig;
 import org.springframework.stereotype.Component;
 
 import com.azure.ai.openai.OpenAIClient;

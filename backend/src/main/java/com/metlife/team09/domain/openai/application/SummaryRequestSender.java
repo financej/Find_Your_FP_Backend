@@ -9,7 +9,7 @@ import com.metlife.team09.domain.openai.enums.ConversationType;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class GptSummaryResult implements GptResult{
+public class SummaryRequestSender implements OpenAiRequestSender {
 	private final OpenAiUtil openAiUtil;
 	@Override
 	public String getResult(ConversationType type, String conversation) {
