@@ -2,3 +2,5 @@ spring:
   profiles:
     active: dev
     include: jwt, oauth, thymeleaf
+server:
+  port: 8081
