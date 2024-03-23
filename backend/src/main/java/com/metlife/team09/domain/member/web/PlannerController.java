@@ -20,8 +20,8 @@ public class PlannerController {
 	private final PlannerService plannerService;
 
 	@GetMapping("")
-	public ResponseEntity<?> getPlanners(@RequestBody PlannerListRequestDto plannerListRequestDto) {
-
-		return ResponseEntity.ok(plannerService.getPlanners(plannerListRequestDto));
+	public ResponseEntity<?> getPlanners() {
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		return ResponseEntity.ok(plannerService.getPlanners(name));
 	}
 }

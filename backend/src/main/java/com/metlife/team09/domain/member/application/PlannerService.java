@@ -18,8 +18,9 @@ public class PlannerService {
 
 	private final MemberRepository memberRepository;
 
-	public List<PlannerListResponseDto> getPlanners(PlannerListRequestDto plannerListRequestDto) {
-		List<Member> allByAddress_dong = memberRepository.findAllByAddress_DongAndIsAdminTrue(plannerListRequestDto.dong());
+	public List<PlannerListResponseDto> getPlanners(String name) {
+		Member member1 = memberRepository.findById(Long.parseLong(name)).get();
+		List<Member> allByAddress_dong = memberRepository.findAllByAddress_DongAndIsAdminTrue(member1.getAddress().getDong());
 		return allByAddress_dong.stream()
 			.map(member -> new PlannerListResponseDto(
 				member.getId(),
