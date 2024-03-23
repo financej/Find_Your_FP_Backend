@@ -1,0 +1,7 @@
+POST http://localhost:8080/api/auth/login/kakao
+Content-Type: application/json
+
+{
+  "redirectUri": "http://localhost:5173/api/auth",
+  "code": "Iu-DK_tnTqfqQ9xfDRrUVpI-2BecXZB5scxEpKPIMGNRE1WVfEkJwzWYcX8KKiVOAAABjmZlZ-OGtS2__sNdBQ"
+}

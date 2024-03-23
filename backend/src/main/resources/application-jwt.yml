@@ -1,0 +1,6 @@
+security:
+  jwt:
+    header: Authorization
+    secret-key: bWV0bGlmZS1oYWNrNGpvYi10ZWFtMDkK
+    secret-expiration: 604800000
+    token-validity-in-seconds: 86400
