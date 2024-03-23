@@ -1,22 +1,25 @@
 package com.metlife.team09.domain.chat.application;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.metlife.team09.domain.chat.application.dto.ChatRoomRequestDto;
-import com.metlife.team09.domain.chat.application.dto.ChatRoomResponseDto;
 import com.metlife.team09.domain.chat.application.dto.EndChatRoomRequestDto;
 import com.metlife.team09.domain.chat.persistence.Chat;
 import com.metlife.team09.domain.chat.persistence.ChatRepository;
 import com.metlife.team09.domain.chat.persistence.ChatSocketSessionHandler;
 import com.metlife.team09.domain.member.persistence.Member;
 import com.metlife.team09.domain.member.persistence.MemberRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.socket.WebSocketSession;
 
-import java.util.List;
 import java.util.Set;
+
 
 @Slf4j
 @RequiredArgsConstructor
@@ -40,8 +43,13 @@ public class ChatService {
         Member member = memberRepository.findById(plannerId).orElseThrow(RuntimeException::new);
 
         Chat chat = Chat.builder()
-                .customer(member)
                 .build();
+
+        if(member.isAdmin) {
+            chat.updateChatPlanner(member);
+        } else {
+            chat.updateChatCustomer(member);
+        }
 
         Chat savedChat = chatRepository.save(chat);
 
@@ -52,7 +60,11 @@ public class ChatService {
         Member member = memberRepository.findById(requestDto.roomId()).orElseThrow(RuntimeException::new);
         Chat chat = chatRepository.findById(requestDto.roomId()).orElseThrow(RuntimeException::new);
 
-        chat.updateChatCustomer(member);
+        if(member.isAdmin) {
+            chat.updateChatPlanner(member);
+        } else {
+            chat.updateChatCustomer(member);
+        }
 
         return chat;
     }

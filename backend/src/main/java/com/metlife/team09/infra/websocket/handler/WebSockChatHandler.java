@@ -10,10 +10,9 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.metlife.team09.domain.chat.application.ChatService;
 import com.metlife.team09.domain.chat.persistence.ChatMessage;
 import com.metlife.team09.domain.chat.persistence.ChatSocketSessionHandler;
-import com.metlife.team09.domain.member.application.MemberService;
+import com.metlife.team09.domain.chat.web.ChatLogService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class WebSockChatHandler extends TextWebSocketHandler {
     private final ObjectMapper objectMapper;
-    private final ChatService chatService;
-    private final MemberService memberService;
+    private final ChatLogService chatLogService;
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -35,7 +33,8 @@ public class WebSockChatHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
         ChatMessage chatMessage = objectMapper.readValue(payload, ChatMessage.class);
-        // Chat room = chatService.findRoomById(Long.valueOf(chatMessage.getRoomId()));
+        chatLogService.saveChatLog(chatMessage);
+
         String senderId = chatMessage.getSenderId();
         Set<WebSocketSession> sessions= ChatSocketSessionHandler.getSessions();   //방에 있는 현재 사용자 한명이 WebsocketSession
         if (chatMessage.getType().equals(ChatMessage.MessageType.ENTER)) {
