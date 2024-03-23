@@ -20,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class ChatRestController {
     private final ChatService chatService;
     private final ChatLogService chatLogService;
