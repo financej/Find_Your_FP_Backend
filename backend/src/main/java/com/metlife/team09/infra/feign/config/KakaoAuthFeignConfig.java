@@ -1,4 +1,4 @@
-package com.metlife.team09.domain.feign.config;
+package com.metlife.team09.infra.feign.config;
 
 import feign.RequestInterceptor;
 import org.springframework.context.annotation.Bean;

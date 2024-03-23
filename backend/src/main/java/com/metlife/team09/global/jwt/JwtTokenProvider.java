@@ -40,8 +40,6 @@ public class JwtTokenProvider {
     public String createToken(final String userPk) {
         final Claims claims = Jwts.claims().setSubject(userPk); // JWT payload 에 저장되는 정보단위
 
-//        claims.put("role", role);                             // 정보는 key-value 로 저장된다
-
         final Date now = new Date();
 
         return Jwts.builder()

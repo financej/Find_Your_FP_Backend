@@ -1,7 +1,7 @@
 package com.metlife.team09;
 
-import com.metlife.team09.domain.feign.client.KakaoAuthInfoClient;
-import com.metlife.team09.domain.feign.client.KakaoAuthLoginClient;
+import com.metlife.team09.infra.feign.client.KakaoAuthInfoClient;
+import com.metlife.team09.infra.feign.client.KakaoAuthLoginClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;

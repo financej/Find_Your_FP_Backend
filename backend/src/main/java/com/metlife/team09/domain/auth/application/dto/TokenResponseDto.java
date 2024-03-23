@@ -1,4 +1,4 @@
 package com.metlife.team09.domain.auth.application.dto;
 
-public record TokenResponseDto(String accessToken) {
+public record TokenResponseDto(String accessToken,String userName,Boolean isAdmin) {
 }

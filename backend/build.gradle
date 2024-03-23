@@ -26,9 +26,6 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-//    implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
-//    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-//    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
@@ -41,14 +38,26 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
+    // THYMELEAF
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // WEBSOCKET
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+    // MYSQL
+    implementation 'mysql:mysql-connector-java:8.0.15'
+
     // JWT
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
     //SWAGGER
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
-
+    runtimeOnly 'mysql:mysql-connector-java'
     // FEIGN
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.8'
+
+    // JSON
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
 
     //AZURE OPEN AI
     implementation 'com.azure:azure-ai-openai:1.0.0-beta.7'
