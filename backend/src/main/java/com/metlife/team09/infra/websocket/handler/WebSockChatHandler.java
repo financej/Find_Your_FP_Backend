@@ -34,7 +34,7 @@ public class WebSockChatHandler extends TextWebSocketHandler {
         String payload = message.getPayload();
         ChatMessage chatMessage = objectMapper.readValue(payload, ChatMessage.class);
         chatLogService.saveChatLog(chatMessage);
-s
+
         String senderId = chatMessage.getSenderId();
         Set<WebSocketSession> sessions= ChatSocketSessionHandler.getSessions();
 
