@@ -1,5 +1,11 @@
 package com.metlife.team09.domain.member.persistence;
 
+<<<<<<< HEAD
+=======
+import lombok.*;
+
+import javax.persistence.Embedded;
+>>>>>>> main
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,9 +27,17 @@ public class Member {
     private Long id;
 
     private String email;
+    private String name;
+    @Embedded
+    private Address address;
+    public boolean isAdmin;
 
     @Builder
     public Member(final String email)  {
         this.email = email;
+    }
+
+    public void setAddress(Address address){
+        this.address = address;
     }
 }

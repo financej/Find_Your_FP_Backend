@@ -37,7 +37,6 @@ public class AuthService {
     private String KAKAO_CLIENT_ID;
     @Value("${kakao.client-secret}")
     private String KAKAO_CLIENT_SECRET;
-
     @Transactional
     public SignupResponseDto signup(final SignupRequestDto requestDto) {
 
@@ -49,7 +48,6 @@ public class AuthService {
 
         return new SignupResponseDto(member.getId());
     }
-
     public LoginResponseDto login(final LoginRequestDto requestDto) {
 
         final String token = jwtTokenProvider.createToken(requestDto.email());
@@ -79,7 +77,7 @@ public class AuthService {
 
         String accessToken = jwtTokenProvider.createToken(member.getId().toString());
 
-        return new TokenResponseDto(accessToken);
+        return new TokenResponseDto(accessToken,member.getEmail(),member.isAdmin());
     }
 
     private KakaoAuthInfoResponseDto getKakaoAuthInfoResponse(KakaoAuthLoginResponseDto kakaoLoginAccessToken) {

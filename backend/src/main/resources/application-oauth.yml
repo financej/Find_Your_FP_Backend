@@ -1,5 +1,5 @@
 kakao:
-  client-id: 57af93f1597e793699fde66442b691f3
+  client-id: 00341e5728df150c3dfb6dd9133d2604
   client-secret: JDBoGMyCasb1MmlmVREReH83g8liYvOw
   client-authentication-method: client_secret_post
   authorization-grant-type: authorization_code

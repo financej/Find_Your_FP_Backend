@@ -1,0 +1,40 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Gradle@2
+  inputs:
+    workingDirectory: 'backend'
+    gradleWrapperFile: 'backend/gradlew'
+    gradleOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
+    jdkArchitectureOption: 'x64'
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'build'
+
+# Assuming build produces a .jar file in the build/libs directory, adjust path as needed.
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '**/build/libs/*.jar'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+# Publish the artifact to Azure Pipelines.
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+# Deploy the .jar file to Azure App Service
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'metlife-it-hackathon(c78a7e0d-77b8-4816-b9f7-ac6d97d997be)'
+    appType: 'webAppLinux'
+    appName: 'app-metlife-team09'
+    package: '$(Build.ArtifactStagingDirectory)/**/*.jar'
+    runtimeStack: 'JAVA|17-java17' # Adjust the Java version according to your app's requirements
