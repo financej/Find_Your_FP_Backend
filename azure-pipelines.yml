@@ -33,7 +33,7 @@ steps:
 # Deploy the .jar file to Azure App Service
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'metlife-it-hackathon'
+    azureSubscription: 'metlife-it-hackathon(c78a7e0d-77b8-4816-b9f7-ac6d97d997be)'
     appType: 'webAppLinux'
     appName: 'app-metlife-team09'
     package: '$(Build.ArtifactStagingDirectory)/**/*.jar'
