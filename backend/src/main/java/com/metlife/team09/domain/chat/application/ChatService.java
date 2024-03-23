@@ -55,11 +55,6 @@ public class ChatService {
         }
 
         Chat savedChat = chatRepository.save(chat);
-        final Chat chat = Chat.builder()
-                .customer(member)
-                .build();
-
-        final Chat savedChat = chatRepository.save(chat);
 
         return savedChat;
     }
