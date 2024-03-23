@@ -24,6 +24,7 @@ public class Member {
     @Embedded
     private Address address;
 
+    @Column(name = "is_admin")
     public Boolean isAdmin;
 
     @Builder

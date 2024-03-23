@@ -42,7 +42,7 @@ public class ChatRestController {
     }
 
     @GetMapping("/chats")
-    public ResponseEntity<ChatRoomResponseDto> chatRoom(@RequestParam final ChatRoomRequestDto requestDto){
+    public ResponseEntity<ChatRoomResponseDto> chatRoom(@ModelAttribute final ChatRoomRequestDto requestDto){
         final Chat chat = chatService.findRoomById(requestDto.roomId());
 
         chatService.joinChat(requestDto);

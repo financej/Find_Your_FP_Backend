@@ -65,7 +65,7 @@ public class ChatService {
         final Chat chat = chatRepository.findById(requestDto.roomId())
                 .orElseThrow(ChatRoomNotFoundException::new);
 
-        if(member.isAdmin) {
+        if(member.getIsAdmin()) {
             chat.updateChatPlanner(member);
         } else {
             chat.updateChatCustomer(member);
