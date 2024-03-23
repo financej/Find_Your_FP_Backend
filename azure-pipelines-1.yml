@@ -7,7 +7,7 @@ pool:
 steps:
 - task: Gradle@2
   inputs:
-    workingDirectory: '/backend'
+    workingDirectory: 'backend'
     gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
