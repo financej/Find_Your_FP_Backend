@@ -16,7 +16,7 @@
 
 <script th:inline="javascript">
     function enterRoom(socket){
-        var enterMsg={"type" : "ENTER","roomId":[[${room.id}]],"sender":"chee","msg":""}; //sender는  글쓸때 수정하자.
+        var enterMsg={"type" : "ENTER","roomId":[[${room.id}]],"senderId":[[${userId}]],"message":""}; //sender는  글쓸때 수정하자.
         socket.send(JSON.stringify(enterMsg));
     }
     let socket = new WebSocket("ws://localhost:8080/ws/chat");
@@ -26,7 +26,7 @@
         enterRoom(socket);
     };
     socket.onclose=function(e){
-        console.log('disconnet');
+        console.log('disconnect');
     }
 
     socket.onerror = function (e){
@@ -35,6 +35,7 @@
 
     //메세지 수신했을 때 이벤트.
     socket.onmessage = function (e) {
+        console.log(e)
         console.log(e.data);
         let msgArea = document.querySelector('.msgArea');
         let newMsg = document.createElement('div');
@@ -46,12 +47,12 @@
     //메세지 보내기 버튼 눌렀을 떄..
     function sendMsg() {
         let content=document.querySelector('.content').value;
-        var talkMsg={"type" : "TALK","roomId":[[${room.id}]] ,"sender":"chee","msg":content};
+        var talkMsg={"type" : "TALK","roomId":[[${room.id}]] ,"sender":[[${userId}]],"msg":content};
         socket.send(JSON.stringify(talkMsg));
     }
 
     function quit(){
-        var quitMsg={"type" : "QUIT","roomId":[[${room.id}]] ,"sender":"chee","msg":""};
+        var quitMsg={"type" : "QUIT","roomId":[[${room.id}]] ,"sender":[[${userId}]],"msg":""};
         socket.send(JSON.stringify(quitMsg));
         socket.close();
         location.href="/chat/chatList";
