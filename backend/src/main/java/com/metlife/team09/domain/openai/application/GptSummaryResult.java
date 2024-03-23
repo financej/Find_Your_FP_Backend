@@ -13,7 +13,6 @@ public class GptSummaryResult implements GptResult{
 	private final OpenAiUtil openAiUtil;
 	@Override
 	public String getResult(ConversationType type, String conversation) {
-		
 		// Open-AI에 보낼 채팅메시지 생성
 		List<ChatRequestMessage> chatMessages = openAiUtil.generateChatMessages(type, conversation);
 
