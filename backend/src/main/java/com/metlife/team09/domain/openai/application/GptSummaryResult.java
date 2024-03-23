@@ -1,10 +1,9 @@
-package com.metlife.team09.domain.openai;
+package com.metlife.team09.domain.openai.application;
 
 import java.util.List;
 
 import com.azure.ai.openai.models.ChatCompletions;
 import com.azure.ai.openai.models.ChatRequestMessage;
-import com.metlife.team09.domain.openai.application.OpenAiUtil;
 import com.metlife.team09.domain.openai.enums.ConversationType;
 
 import lombok.RequiredArgsConstructor;

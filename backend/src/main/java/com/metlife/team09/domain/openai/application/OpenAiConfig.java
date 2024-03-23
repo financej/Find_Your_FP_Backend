@@ -1,4 +1,4 @@
-package com.metlife.team09.domain.openai;
+package com.metlife.team09.domain.openai.application;
 
 import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.OpenAIClientBuilder;
@@ -31,4 +31,9 @@ public class OpenAiConfig {
                 .credential(new AzureKeyCredential(key1))
                 .buildClient();
     }
+
+    public String getGptResult(){
+
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.metlife.team09.domain.openai;
+package com.metlife.team09.domain.openai.application;
 
 import com.metlife.team09.domain.openai.enums.ConversationType;
 

@@ -12,7 +12,6 @@ import com.azure.ai.openai.models.ChatCompletionsOptions;
 import com.azure.ai.openai.models.ChatRequestMessage;
 import com.azure.ai.openai.models.ChatRequestSystemMessage;
 import com.azure.ai.openai.models.ChatRequestUserMessage;
-import com.metlife.team09.domain.openai.OpenAiConfig;
 import com.metlife.team09.domain.openai.enums.ConversationType;
 
 import lombok.RequiredArgsConstructor;
