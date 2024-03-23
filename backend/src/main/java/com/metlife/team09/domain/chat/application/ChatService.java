@@ -6,14 +6,17 @@ import com.metlife.team09.domain.chat.application.dto.ChatRoomResponseDto;
 import com.metlife.team09.domain.chat.application.dto.EndChatRoomRequestDto;
 import com.metlife.team09.domain.chat.persistence.Chat;
 import com.metlife.team09.domain.chat.persistence.ChatRepository;
+import com.metlife.team09.domain.chat.persistence.ChatSocketSessionHandler;
 import com.metlife.team09.domain.member.persistence.Member;
 import com.metlife.team09.domain.member.persistence.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.socket.WebSocketSession;
 
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -55,9 +58,13 @@ public class ChatService {
     }
 
     public void endChatRoom(EndChatRoomRequestDto requestDto) {
+        Set<WebSocketSession> sessions = ChatSocketSessionHandler.getSessions();
+        if(sessions.size() != 0) { // session이 모두 끝
+            return;
+        }
+
         Chat chat = chatRepository.findById(requestDto.roomId())
                 .orElseThrow(RuntimeException::new);
-
         chatRepository.delete(chat);
     }
 

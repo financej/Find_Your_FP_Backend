@@ -31,6 +31,7 @@ public class ChatRestController {
         return ResponseEntity.ok(response);
     }
 
+    // ws 프로토콜로 세션 종료후 호출해야함
     @DeleteMapping("/chats")
     public void endChatRoom(@RequestParam final EndChatRoomRequestDto requestDto) {
         chatService.endChatRoom(requestDto);
