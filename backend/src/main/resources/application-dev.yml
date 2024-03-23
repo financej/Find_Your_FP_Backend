@@ -1,4 +1,7 @@
 spring:
+  config:
+    activate:
+      on-profile: local
   datasource:
     url: jdbc:mysql://sqldb-metlife-team09.mysql.database.azure.com/sqldb-metlife-team09
     username: team09
@@ -23,3 +26,33 @@ spring:
 logging:
   level:
     leeseunghee.study: DEBUG
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  h2:
+    console:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:~/test;
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always

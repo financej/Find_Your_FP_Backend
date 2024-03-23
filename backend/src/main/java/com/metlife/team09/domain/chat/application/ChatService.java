@@ -42,13 +42,13 @@ public class ChatService {
     }
 
     public Chat createRoom(final Long plannerId) {
-        final Member member = memberRepository.findById(plannerId)
+        Member member = memberRepository.findById(plannerId)
                 .orElseThrow(MemberNotFound::new);
 
         Chat chat = Chat.builder()
                 .build();
 
-        if(member.isAdmin) {
+        if(member.getIsAdmin()) {
             chat.updateChatPlanner(member);
         } else {
             chat.updateChatCustomer(member);

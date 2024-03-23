@@ -8,6 +8,16 @@ public record ChatRoomResponseDto(
         Long plannerId
 ) {
     public static ChatRoomResponseDto from(final Chat chat) {
-        return new ChatRoomResponseDto(chat.getId(), chat.getCustomer().getId(), chat.getPlanner().getId());
+        Long customerId = null;
+        if(chat.getCustomer() != null) {
+            customerId = chat.getCustomer().getId();
+        }
+
+        Long plannerId = null;
+        if(chat.getPlanner() != null) {
+            plannerId = chat.getPlanner().getId();
+        }
+
+        return new ChatRoomResponseDto(chat.getId(), customerId, plannerId);
     }
 }

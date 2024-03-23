@@ -43,7 +43,7 @@ public class Chat {
         this.customer = customer;
     }
 
-    public void updateChatPlanner(Member customer) {
-        this.planner = customer;
+    public void updateChatPlanner(Member member) {
+        this.planner = member;
     }
 }
