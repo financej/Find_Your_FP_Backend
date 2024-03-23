@@ -1,17 +1,12 @@
 package com.metlife.team09.domain.member.persistence;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Address;
 
 @Entity
 @Getter
@@ -37,6 +32,4 @@ public class Member {
         this.address = address;
     }
 
-
-    
 }

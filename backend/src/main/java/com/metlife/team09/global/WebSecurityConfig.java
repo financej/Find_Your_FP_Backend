@@ -35,6 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                     .authorizeRequests()
                     .antMatchers( "/api/auth/**","/h2-console/**").permitAll()
+                    .antMatchers("/ws/chat/**", "/chat/**").permitAll()
+
 
                 .anyRequest().authenticated();
 

@@ -2,8 +2,6 @@ package com.metlife.team09.domain.member.persistence;
 
 import javax.persistence.Embeddable;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -16,6 +14,5 @@ public class Address {
 	String dong;
 
 	public Address() {
-
 	}
 }
