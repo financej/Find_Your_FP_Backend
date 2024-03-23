@@ -18,8 +18,7 @@ spring:
         format_sql: true
         show_sql: true
     defer-datasource-initialization: true
-<<<<<<< .merge_file_X4EzJh
-<<<<<<< HEAD
+
 
   sql:
     init:
@@ -28,7 +27,3 @@ spring:
 logging:
   level:
     leeseunghee.study: DEBUG
-=======
->>>>>>> 3bc334f (Update yaml)
-=======
->>>>>>> .merge_file_dDvMVB
