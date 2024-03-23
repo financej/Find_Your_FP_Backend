@@ -1,22 +1,22 @@
 package com.metlife.team09.infra.websocket.handler;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.metlife.team09.domain.chat.application.ChatService;
-import com.metlife.team09.domain.chat.persistence.Chat;
-import com.metlife.team09.domain.chat.persistence.ChatMessage;
-import com.metlife.team09.domain.chat.persistence.ChatSocketSessionHandler;
-import com.metlife.team09.domain.member.application.MemberService;
-import com.metlife.team09.domain.member.persistence.Member;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
+import java.util.Set;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import java.io.IOException;
-import java.util.Set;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.metlife.team09.domain.chat.application.ChatService;
+import com.metlife.team09.domain.chat.persistence.ChatMessage;
+import com.metlife.team09.domain.chat.persistence.ChatSocketSessionHandler;
+import com.metlife.team09.domain.member.application.MemberService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -35,8 +35,8 @@ public class WebSockChatHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
         ChatMessage chatMessage = objectMapper.readValue(payload, ChatMessage.class);
-        Chat room = chatService.findRoomById(Long.valueOf(chatMessage.getRoomId()));
-        Member sender = memberService.getMember(Long.valueOf(chatMessage.getSenderId()));
+        // Chat room = chatService.findRoomById(Long.valueOf(chatMessage.getRoomId()));
+        // Member sender = memberService.getMember(Long.valueOf(chatMessage.getSenderId()));
         Set<WebSocketSession> sessions= ChatSocketSessionHandler.getSessions();   //방에 있는 현재 사용자 한명이 WebsocketSession
         if (chatMessage.getType().equals(ChatMessage.MessageType.ENTER)) {
             //사용자가 방에 입장하면  Enter메세지를 보내도록 해놓음.  이건 새로운사용자가 socket 연결한 것이랑은 다름.

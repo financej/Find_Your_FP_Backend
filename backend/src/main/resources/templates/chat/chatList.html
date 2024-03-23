@@ -14,8 +14,7 @@
 <table>
     <tr th:each="room : ${roomList}" >
         <td>
-            <a th:href="@{chatRoom(roomId=${room.roomId} )}"
-               th:text="${room.name}"></a>
+            <a th:href="@{chatRoom(roomId=${room.id} )}"></a>
         </td>
     </tr>
 </table>

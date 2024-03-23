@@ -1,20 +1,27 @@
 package com.metlife.team09.domain.auth.application;
 
-import com.metlife.team09.domain.auth.application.dto.*;
-import com.metlife.team09.infra.feign.client.KakaoAuthInfoClient;
-import com.metlife.team09.infra.feign.client.KakaoAuthLoginClient;
-import com.metlife.team09.infra.feign.dto.KakaoAuthInfoResponseDto;
-import com.metlife.team09.infra.feign.dto.KakaoAuthLoginResponseDto;
-import com.metlife.team09.domain.member.persistence.Member;
-import com.metlife.team09.domain.member.persistence.MemberRepository;
-import com.metlife.team09.global.jwt.JwtTokenProvider;
-import lombok.RequiredArgsConstructor;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.metlife.team09.domain.auth.application.dto.LoginKakaoRequestDto;
+import com.metlife.team09.domain.auth.application.dto.LoginRequestDto;
+import com.metlife.team09.domain.auth.application.dto.LoginResponseDto;
+import com.metlife.team09.domain.auth.application.dto.SignupRequestDto;
+import com.metlife.team09.domain.auth.application.dto.SignupResponseDto;
+import com.metlife.team09.domain.auth.application.dto.TokenResponseDto;
+import com.metlife.team09.domain.member.persistence.Member;
+import com.metlife.team09.domain.member.persistence.MemberRepository;
+import com.metlife.team09.global.jwt.JwtTokenProvider;
+import com.metlife.team09.infra.feign.client.KakaoAuthInfoClient;
+import com.metlife.team09.infra.feign.client.KakaoAuthLoginClient;
+import com.metlife.team09.infra.feign.dto.KakaoAuthInfoResponseDto;
+import com.metlife.team09.infra.feign.dto.KakaoAuthLoginResponseDto;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +43,6 @@ public class AuthService {
 
         final Member member = Member.builder()
                 .email(requestDto.email())
-                .password(requestDto.password())
                 .build();
 
         memberRepository.save(member);

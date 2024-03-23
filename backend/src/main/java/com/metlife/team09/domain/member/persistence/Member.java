@@ -1,11 +1,15 @@
 package com.metlife.team09.domain.member.persistence;
 
-import lombok.*;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
@@ -18,11 +22,8 @@ public class Member {
 
     private String email;
 
-    private String password;
-
     @Builder
-    public Member(final String email, final String password)  {
+    public Member(final String email)  {
         this.email = email;
-        this.password = password;
     }
 }
