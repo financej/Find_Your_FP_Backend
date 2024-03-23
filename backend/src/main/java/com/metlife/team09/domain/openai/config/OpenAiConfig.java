@@ -30,8 +30,4 @@ public class OpenAiConfig {
                 .buildClient();
     }
 
-    public String getGptResult(){
-
-    }
-
 }
