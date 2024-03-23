@@ -1,11 +1,6 @@
 package com.metlife.team09.domain.member.persistence;
 
-<<<<<<< HEAD
-=======
-import lombok.*;
-
 import javax.persistence.Embedded;
->>>>>>> main
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.tomcat.jni.Address;
 
 @Entity
 @Getter
@@ -40,4 +36,7 @@ public class Member {
     public void setAddress(Address address){
         this.address = address;
     }
+
+
+    
 }
