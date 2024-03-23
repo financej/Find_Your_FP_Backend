@@ -17,12 +17,10 @@ public class Member {
     private Long id;
 
     private String email;
-
-    private String password;
+    private boolean isAdmin;
 
     @Builder
-    public Member(final String email, final String password)  {
+    public Member(final String email)  {
         this.email = email;
-        this.password = password;
     }
 }
