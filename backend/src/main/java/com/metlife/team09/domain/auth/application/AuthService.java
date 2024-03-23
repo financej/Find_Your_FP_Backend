@@ -70,7 +70,7 @@ public class AuthService {
         return kakaoAuthInfoClient.getInfo("Bearer " + kakaoLoginAccessToken.accessToken(), "application/x-www-form-urlencoded;charset=utf-8");
     }
 
-    private KakaoAuthLoginResponseDto getKakaoLoginAccessToken(final LoginKakaoRequestDto request) {
+    public KakaoAuthLoginResponseDto getKakaoLoginAccessToken(final LoginKakaoRequestDto request) {
         final Map<String, Object> parmaMap = new HashMap<>();
 
         parmaMap.put("grant_type", "authorization_code");
