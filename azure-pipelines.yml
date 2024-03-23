@@ -8,7 +8,7 @@ steps:
 - task: Gradle@2
   inputs:
     workingDirectory: 'backend'
-    gradleWrapperFile: 'gradlew'
+    gradleWrapperFile: 'backend/gradlew'
     gradleOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: 'default'
