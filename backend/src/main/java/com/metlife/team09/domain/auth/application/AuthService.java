@@ -25,8 +25,8 @@ import com.metlife.team09.infra.feign.dto.KakaoAuthLoginResponseDto;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
+@Transactional
 public class AuthService {
 
     private final MemberRepository memberRepository;
