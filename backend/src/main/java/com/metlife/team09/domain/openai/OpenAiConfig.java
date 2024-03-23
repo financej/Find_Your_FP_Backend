@@ -16,7 +16,7 @@ public class OpenAiConfig {
     @Value("${GPT4.key1}")
     private String key1;
 
-    @Value("${GPT4.model}")
+	@Value("${GPT4.model.id}")
     private String modelId;
     public OpenAIClient getOpenAiClient(){
         return new OpenAIClientBuilder()
