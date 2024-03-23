@@ -38,4 +38,9 @@ public class Chat {
 
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    public void
+    updateChatCustomer(Member customer) {
+        this.customer = customer;
+    }
 }

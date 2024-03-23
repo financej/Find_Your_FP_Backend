@@ -1,6 +1,8 @@
 package com.metlife.team09.domain.chat.application;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.metlife.team09.domain.chat.application.dto.ChatRoomRequestDto;
+import com.metlife.team09.domain.chat.application.dto.ChatRoomResponseDto;
 import com.metlife.team09.domain.chat.persistence.Chat;
 import com.metlife.team09.domain.chat.persistence.ChatRepository;
 import com.metlife.team09.domain.member.persistence.Member;
@@ -34,11 +36,25 @@ public class ChatService {
         Member member = memberRepository.findById(plannerId).orElseThrow(RuntimeException::new);
 
         Chat chat = Chat.builder()
-                .planner(member)
+                .customer(member)
                 .build();
 
         Chat savedChat = chatRepository.save(chat);
 
         return savedChat;
+    }
+
+    public Chat joinChat(ChatRoomRequestDto requestDto) {
+        Member member = memberRepository.findById(requestDto.roomId()).orElseThrow(RuntimeException::new);
+        Chat chat = chatRepository.findById(requestDto.roomId()).orElseThrow(RuntimeException::new);
+
+        chat.updateChatCustomer(member);
+
+        return chat;
+    }
+
+    public void endChat(ChatRoomRequestDto requestDto) {
+        Member member = memberRepository.findById(requestDto.roomId()).orElseThrow(RuntimeException::new);
+
     }
 }
