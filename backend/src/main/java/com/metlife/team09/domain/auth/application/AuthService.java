@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class AuthService {
 
     private final MemberRepository memberRepository;
