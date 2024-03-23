@@ -7,7 +7,7 @@ public record ChatRoomResponseDto(
         Long customerId,
         Long plannerId
 ) {
-    public static ChatRoomResponseDto from(Chat chat) {
+    public static ChatRoomResponseDto from(final Chat chat) {
         return new ChatRoomResponseDto(chat.getId(), chat.getCustomer().getId(), chat.getPlanner().getId());
     }
 }

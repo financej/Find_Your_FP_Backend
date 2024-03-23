@@ -18,9 +18,12 @@ public class Member {
     private Long id;
 
     private String email;
+
     private String name;
+
     @Embedded
     private Address address;
+
     public Boolean isAdmin;
 
     @Builder
@@ -28,8 +31,7 @@ public class Member {
         this.email = email;
     }
 
-    public void setAddress(Address address){
+    public void setAddress(final Address address){
         this.address = address;
     }
-
 }

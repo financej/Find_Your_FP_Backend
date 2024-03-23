@@ -16,17 +16,20 @@ public class ChatRestController {
     private final ChatService chatService;
 
     @PostMapping("/chats")
-    public ResponseEntity<ChatRoomResponseDto> createRoom(@RequestParam Long userId) {
-        Chat room = chatService.createRoom(1L);
-        ChatRoomResponseDto response = ChatRoomResponseDto.from(room);
+    public ResponseEntity<ChatRoomResponseDto> createRoom(@RequestParam final Long userId) {
+        final Chat room = chatService.createRoom(1L);
+        final ChatRoomResponseDto response = ChatRoomResponseDto.from(room);
+
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/chats")
-    public ResponseEntity<ChatRoomResponseDto> chatRoom(@RequestParam ChatRoomRequestDto requestDto){
-        Chat chat = chatService.findRoomById(requestDto.roomId());
+    public ResponseEntity<ChatRoomResponseDto> chatRoom(@RequestParam final ChatRoomRequestDto requestDto){
+        final Chat chat = chatService.findRoomById(requestDto.roomId());
+
         chatService.joinChat(requestDto);
-        ChatRoomResponseDto response = ChatRoomResponseDto.from(chat);
+
+        final ChatRoomResponseDto response = ChatRoomResponseDto.from(chat);
 
         return ResponseEntity.ok(response);
     }

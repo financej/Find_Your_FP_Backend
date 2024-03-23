@@ -11,6 +11,7 @@ import com.metlife.team09.domain.member.persistence.Member;
 import com.metlife.team09.domain.member.persistence.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,9 +19,12 @@ public class PlannerService {
 
 	private final MemberRepository memberRepository;
 
-	public List<PlannerListResponseDto> getPlanners(String name) {
-		Member member1 = memberRepository.findById(Long.parseLong(name)).get();
-		List<Member> allByAddress_dong = memberRepository.findAllByAddress_DongAndIsAdminTrue(member1.getAddress().getDong());
+	@Transactional
+	public List<PlannerListResponseDto> getPlanners(final String name) {
+		final Member member1 = memberRepository.findById(Long.parseLong(name)).get();
+
+		final List<Member> allByAddress_dong = memberRepository.findAllByAddress_DongAndIsAdminTrue(member1.getAddress().getDong());
+
 		return allByAddress_dong.stream()
 			.map(member -> new PlannerListResponseDto(
 				member.getId(),

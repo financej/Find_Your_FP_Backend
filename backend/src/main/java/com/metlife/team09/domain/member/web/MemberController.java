@@ -23,14 +23,18 @@ public class MemberController {
 
 	@GetMapping("/info")
 	public ResponseEntity<UserInfoResponseDto> getUserInfo() {
-		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		UserInfoResponseDto userInfo = memberService.getUserInfo(Long.parseLong(name));
+		final String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		final UserInfoResponseDto userInfo = memberService.getUserInfo(Long.parseLong(name));
+
 		return ResponseEntity.ok(userInfo);
 	}
+
 	@PutMapping("/info")
-	public ResponseEntity<?> addUserAddress(@RequestBody UserAddressRequestDto userAddressRequestDto){
-		String name = SecurityContextHolder.getContext().getAuthentication().getName();
-		memberService.addUserAddress(Long.parseLong(name), userAddressRequestDto.address());
+	public ResponseEntity<?> addUserAddress(@RequestBody final UserAddressRequestDto request){
+		final String name = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		memberService.addUserAddress(Long.parseLong(name), request.address());
+
 		return ResponseEntity.ok().build();
 	}
 }
