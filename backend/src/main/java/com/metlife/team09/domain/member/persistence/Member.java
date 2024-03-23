@@ -17,10 +17,15 @@ public class Member {
     private Long id;
 
     private String email;
+    private String address;
     private boolean isAdmin;
 
     @Builder
     public Member(final String email)  {
         this.email = email;
+    }
+
+    public void setAddress(String address){
+        this.address = address;
     }
 }
