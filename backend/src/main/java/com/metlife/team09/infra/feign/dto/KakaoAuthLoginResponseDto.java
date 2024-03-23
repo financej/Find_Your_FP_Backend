@@ -1,4 +1,4 @@
-package com.metlife.team09.domain.feign.dto;
+package com.metlife.team09.infra.feign.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

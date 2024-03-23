@@ -1,10 +1,10 @@
 package com.metlife.team09.domain.auth.application;
 
 import com.metlife.team09.domain.auth.application.dto.*;
-import com.metlife.team09.domain.feign.client.KakaoAuthInfoClient;
-import com.metlife.team09.domain.feign.client.KakaoAuthLoginClient;
-import com.metlife.team09.domain.feign.dto.KakaoAuthInfoResponseDto;
-import com.metlife.team09.domain.feign.dto.KakaoAuthLoginResponseDto;
+import com.metlife.team09.infra.feign.client.KakaoAuthInfoClient;
+import com.metlife.team09.infra.feign.client.KakaoAuthLoginClient;
+import com.metlife.team09.infra.feign.dto.KakaoAuthInfoResponseDto;
+import com.metlife.team09.infra.feign.dto.KakaoAuthLoginResponseDto;
 import com.metlife.team09.domain.member.persistence.Member;
 import com.metlife.team09.domain.member.persistence.MemberRepository;
 import com.metlife.team09.global.jwt.JwtTokenProvider;

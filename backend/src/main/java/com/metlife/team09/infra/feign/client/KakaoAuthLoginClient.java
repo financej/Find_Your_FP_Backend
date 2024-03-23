@@ -1,7 +1,7 @@
-package com.metlife.team09.domain.feign.client;
+package com.metlife.team09.infra.feign.client;
 
-import com.metlife.team09.domain.feign.config.KakaoAuthFeignConfig;
-import com.metlife.team09.domain.feign.dto.KakaoAuthLoginResponseDto;
+import com.metlife.team09.infra.feign.config.KakaoAuthFeignConfig;
+import com.metlife.team09.infra.feign.dto.KakaoAuthLoginResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.PostMapping;
