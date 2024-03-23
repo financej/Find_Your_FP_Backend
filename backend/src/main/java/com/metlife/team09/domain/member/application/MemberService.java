@@ -1,10 +1,13 @@
 package com.metlife.team09.domain.member.application;
 
+import java.util.StringTokenizer;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.metlife.team09.domain.member.application.dto.UserInfoResponseDto;
+import com.metlife.team09.domain.member.persistence.Address;
 import com.metlife.team09.domain.member.persistence.Member;
 import com.metlife.team09.domain.member.persistence.MemberRepository;
 
@@ -24,7 +27,8 @@ public class MemberService {
 	public void addUserAddress(long userId,String address){
 		Member member = memberRepository.findById(userId)
 			.orElseThrow(() -> new UsernameNotFoundException("유저가 존재하지 않습니다."));
-		member.setAddress(address);
+		StringTokenizer st = new StringTokenizer(address);
+		member.setAddress(new Address(st.nextToken(),st.nextToken(),st.nextToken()));
 	}
 
 }
