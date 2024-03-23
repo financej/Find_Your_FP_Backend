@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://sqldb-metlife-team09.mysql.database.azure.com:3306/sqldb-metlife-team09
+    url: jdbc:mysql://sqldb-metlife-team09.mysql.database.azure.com/sqldb-metlife-team09
     username: team09
     password: new1234!!
     driver-class-name: com.mysql.cj.jdbc.Driver
