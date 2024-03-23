@@ -1,0 +1,5 @@
+GPT4:
+  key1: f7d1587520404150834f123e39f18fd2
+  key2: 16d90ea0765f46ddbd8b765ff6f92638
+  end-point: https://openai-metlife-team09.openai.azure.com/
+  model: gpt-4
