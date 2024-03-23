@@ -1,9 +1,11 @@
 package com.metlife.team09.domain.chat.application;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.socket.WebSocketSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.metlife.team09.domain.chat.application.dto.ChatRoomRequestDto;
@@ -18,9 +20,6 @@ import com.metlife.team09.domain.member.persistence.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.socket.WebSocketSession;
-
-import java.util.Set;
 
 
 @Slf4j

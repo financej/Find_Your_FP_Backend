@@ -1,13 +1,20 @@
 package com.metlife.team09.domain.chat.web;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.metlife.team09.domain.chat.application.ChatService;
 import com.metlife.team09.domain.chat.application.dto.ChatRoomRequestDto;
 import com.metlife.team09.domain.chat.application.dto.ChatRoomResponseDto;
 import com.metlife.team09.domain.chat.application.dto.EndChatRoomRequestDto;
 import com.metlife.team09.domain.chat.persistence.Chat;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -16,10 +23,9 @@ public class ChatRestController {
     private final ChatService chatService;
 
     @PostMapping("/chats")
-    public ResponseEntity<ChatRoomResponseDto> createRoom(@RequestParam final Long userId) {
-        final Chat room = chatService.createRoom(1L);
-        final ChatRoomResponseDto response = ChatRoomResponseDto.from(room);
-
+    public ResponseEntity<ChatRoomResponseDto> createRoom(@RequestParam Long userId) {
+        Chat room = chatService.createRoom(userId);
+        ChatRoomResponseDto response = ChatRoomResponseDto.from(room);
         return ResponseEntity.ok(response);
     }
 
@@ -36,7 +42,7 @@ public class ChatRestController {
 
     // ws 프로토콜로 세션 종료후 호출해야함
     @DeleteMapping("/chats")
-    public void endChatRoom(@RequestParam final EndChatRoomRequestDto requestDto) {
+    public void endChatRoom(@ModelAttribute final EndChatRoomRequestDto requestDto) {
         chatService.endChatRoom(requestDto);
     }
 }

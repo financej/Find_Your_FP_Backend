@@ -12,7 +12,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.metlife.team09.domain.chat.persistence.ChatMessage;
 import com.metlife.team09.domain.chat.persistence.ChatSocketSessionHandler;
-import com.metlife.team09.domain.chat.web.ChatLogService;
+import com.metlife.team09.domain.chat.application.ChatLogService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
