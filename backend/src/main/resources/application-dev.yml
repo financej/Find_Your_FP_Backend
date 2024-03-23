@@ -1,7 +1,7 @@
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: dev
   datasource:
     url: jdbc:mysql://sqldb-metlife-team09.mysql.database.azure.com/sqldb-metlife-team09
     username: team09
