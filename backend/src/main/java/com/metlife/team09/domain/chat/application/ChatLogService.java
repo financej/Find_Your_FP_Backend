@@ -1,5 +1,7 @@
 package com.metlife.team09.domain.chat.application;
 
+import java.util.List;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +52,9 @@ public class ChatLogService {
 		log.info(">>>>>>>> async log saved : {}", chatLog);
 
 		chatLogRepository.save(chatLog);
+	}
+
+	public List<ChatLog> getChatLogs(Long roomId) {
+		return chatLogRepository.findAllByRoomId(roomId);
 	}
 }
