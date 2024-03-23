@@ -77,7 +77,7 @@ public class AuthService {
 
         String accessToken = jwtTokenProvider.createToken(member.getId().toString());
 
-        return new TokenResponseDto(accessToken,member.getEmail(),member.isAdmin());
+        return new TokenResponseDto(accessToken,member.getEmail(),member.getIsAdmin());
     }
 
     private KakaoAuthInfoResponseDto getKakaoAuthInfoResponse(KakaoAuthLoginResponseDto kakaoLoginAccessToken) {

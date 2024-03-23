@@ -1,1 +1,1 @@
-insert into member(id, email) values (1L, 'test');
+insert into member(id, email, is_admin) values (1L, 'test', false);

@@ -21,7 +21,7 @@ public class Member {
     private String name;
     @Embedded
     private Address address;
-    public boolean isAdmin;
+    public Boolean isAdmin;
 
     @Builder
     public Member(final String email)  {
