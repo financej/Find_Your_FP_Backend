@@ -29,6 +29,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    testImplementation 'org.projectlombok:lombok:1.18.28'
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -57,6 +58,10 @@ dependencies {
 
     // JSON
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
+
+    //AZURE OPEN AI
+    implementation 'com.azure:azure-ai-openai:1.0.0-beta.7'
+
 }
 
 tasks.named('bootBuildImage') {
